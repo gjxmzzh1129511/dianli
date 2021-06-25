@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.mapper.TotalYearMapper">
+  <resultMap id="BaseResultMap" type="com.example.model.studentmanager.TotalYear">
+    <result column="AEP" jdbcType="BIGINT" property="aep" />
+    <result column="COMED" jdbcType="BIGINT" property="comed" />
+    <result column="DAYTON" jdbcType="BIGINT" property="dayton" />
+    <result column="DEOK" jdbcType="BIGINT" property="deok" />
+    <result column="DOM" jdbcType="BIGINT" property="dom" />
+    <result column="DUQ" jdbcType="BIGINT" property="duq" />
+    <result column="EKPC" jdbcType="BIGINT" property="ekpc" />
+    <result column="FE" jdbcType="BIGINT" property="fe" />
+    <result column="NI" jdbcType="BIGINT" property="ni" />
+    <result column="PJMW" jdbcType="BIGINT" property="pjmw" />
+    <result column="PJME" jdbcType="BIGINT" property="pjme" />
+    <result column="PJM_Load" jdbcType="BIGINT" property="pjmLoad" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.model.studentmanager.TotalYear">
+    <result column="YEAR" jdbcType="LONGVARCHAR" property="year" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    AEP, COMED, DAYTON, DEOK, DOM, DUQ, EKPC, FE, NI, PJMW, PJME, PJM_Load
+  </sql>
+  <sql id="Blob_Column_List">
+    YEAR
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.example.model.studentmanager.TotalYearExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from total_year
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.example.model.studentmanager.TotalYearExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from total_year
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.example.model.studentmanager.TotalYearExample">
+    delete from total_year
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.model.studentmanager.TotalYear">
+    insert into total_year (AEP, COMED, DAYTON, 
+      DEOK, DOM, DUQ, EKPC, 
+      FE, NI, PJMW, PJME, 
+      PJM_Load, YEAR)
+    values (#{aep,jdbcType=BIGINT}, #{comed,jdbcType=BIGINT}, #{dayton,jdbcType=BIGINT}, 
+      #{deok,jdbcType=BIGINT}, #{dom,jdbcType=BIGINT}, #{duq,jdbcType=BIGINT}, #{ekpc,jdbcType=BIGINT}, 
+      #{fe,jdbcType=BIGINT}, #{ni,jdbcType=BIGINT}, #{pjmw,jdbcType=BIGINT}, #{pjme,jdbcType=BIGINT}, 
+      #{pjmLoad,jdbcType=BIGINT}, #{year,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.model.studentmanager.TotalYear">
+    insert into total_year
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="aep != null">
+        AEP,
+      </if>
+      <if test="comed != null">
+        COMED,
+      </if>
+      <if test="dayton != null">
+        DAYTON,
+      </if>
+      <if test="deok != null">
+        DEOK,
+      </if>
+      <if test="dom != null">
+        DOM,
+      </if>
+      <if test="duq != null">
+        DUQ,
+      </if>
+      <if test="ekpc != null">
+        EKPC,
+      </if>
+      <if test="fe != null">
+        FE,
+      </if>
+      <if test="ni != null">
+        NI,
+      </if>
+      <if test="pjmw != null">
+        PJMW,
+      </if>
+      <if test="pjme != null">
+        PJME,
+      </if>
+      <if test="pjmLoad != null">
+        PJM_Load,
+      </if>
+      <if test="year != null">
+        YEAR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="aep != null">
+        #{aep,jdbcType=BIGINT},
+      </if>
+      <if test="comed != null">
+        #{comed,jdbcType=BIGINT},
+      </if>
+      <if test="dayton != null">
+        #{dayton,jdbcType=BIGINT},
+      </if>
+      <if test="deok != null">
+        #{deok,jdbcType=BIGINT},
+      </if>
+      <if test="dom != null">
+        #{dom,jdbcType=BIGINT},
+      </if>
+      <if test="duq != null">
+        #{duq,jdbcType=BIGINT},
+      </if>
+      <if test="ekpc != null">
+        #{ekpc,jdbcType=BIGINT},
+      </if>
+      <if test="fe != null">
+        #{fe,jdbcType=BIGINT},
+      </if>
+      <if test="ni != null">
+        #{ni,jdbcType=BIGINT},
+      </if>
+      <if test="pjmw != null">
+        #{pjmw,jdbcType=BIGINT},
+      </if>
+      <if test="pjme != null">
+        #{pjme,jdbcType=BIGINT},
+      </if>
+      <if test="pjmLoad != null">
+        #{pjmLoad,jdbcType=BIGINT},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.model.studentmanager.TotalYearExample" resultType="java.lang.Long">
+    select count(*) from total_year
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update total_year
+    <set>
+      <if test="record.aep != null">
+        AEP = #{record.aep,jdbcType=BIGINT},
+      </if>
+      <if test="record.comed != null">
+        COMED = #{record.comed,jdbcType=BIGINT},
+      </if>
+      <if test="record.dayton != null">
+        DAYTON = #{record.dayton,jdbcType=BIGINT},
+      </if>
+      <if test="record.deok != null">
+        DEOK = #{record.deok,jdbcType=BIGINT},
+      </if>
+      <if test="record.dom != null">
+        DOM = #{record.dom,jdbcType=BIGINT},
+      </if>
+      <if test="record.duq != null">
+        DUQ = #{record.duq,jdbcType=BIGINT},
+      </if>
+      <if test="record.ekpc != null">
+        EKPC = #{record.ekpc,jdbcType=BIGINT},
+      </if>
+      <if test="record.fe != null">
+        FE = #{record.fe,jdbcType=BIGINT},
+      </if>
+      <if test="record.ni != null">
+        NI = #{record.ni,jdbcType=BIGINT},
+      </if>
+      <if test="record.pjmw != null">
+        PJMW = #{record.pjmw,jdbcType=BIGINT},
+      </if>
+      <if test="record.pjme != null">
+        PJME = #{record.pjme,jdbcType=BIGINT},
+      </if>
+      <if test="record.pjmLoad != null">
+        PJM_Load = #{record.pjmLoad,jdbcType=BIGINT},
+      </if>
+      <if test="record.year != null">
+        YEAR = #{record.year,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update total_year
+    set AEP = #{record.aep,jdbcType=BIGINT},
+      COMED = #{record.comed,jdbcType=BIGINT},
+      DAYTON = #{record.dayton,jdbcType=BIGINT},
+      DEOK = #{record.deok,jdbcType=BIGINT},
+      DOM = #{record.dom,jdbcType=BIGINT},
+      DUQ = #{record.duq,jdbcType=BIGINT},
+      EKPC = #{record.ekpc,jdbcType=BIGINT},
+      FE = #{record.fe,jdbcType=BIGINT},
+      NI = #{record.ni,jdbcType=BIGINT},
+      PJMW = #{record.pjmw,jdbcType=BIGINT},
+      PJME = #{record.pjme,jdbcType=BIGINT},
+      PJM_Load = #{record.pjmLoad,jdbcType=BIGINT},
+      YEAR = #{record.year,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update total_year
+    set AEP = #{record.aep,jdbcType=BIGINT},
+      COMED = #{record.comed,jdbcType=BIGINT},
+      DAYTON = #{record.dayton,jdbcType=BIGINT},
+      DEOK = #{record.deok,jdbcType=BIGINT},
+      DOM = #{record.dom,jdbcType=BIGINT},
+      DUQ = #{record.duq,jdbcType=BIGINT},
+      EKPC = #{record.ekpc,jdbcType=BIGINT},
+      FE = #{record.fe,jdbcType=BIGINT},
+      NI = #{record.ni,jdbcType=BIGINT},
+      PJMW = #{record.pjmw,jdbcType=BIGINT},
+      PJME = #{record.pjme,jdbcType=BIGINT},
+      PJM_Load = #{record.pjmLoad,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
